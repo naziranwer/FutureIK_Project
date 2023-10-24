@@ -3,6 +3,10 @@ import React, { useState, useEffect } from 'react';
 
 const Subfolder = ({ subfolder, isChecked }) => {
   const [isSubfolderChecked, setIsSubfolderChecked] = useState(false);
+  const [activeSub,setActiveSub]= useState(null);
+  const [showFile,setShowFile]=useState(false);
+
+  console.log("status from parent",isChecked);
 
   useEffect(() => {
     setIsSubfolderChecked(isChecked);
@@ -12,13 +16,17 @@ const Subfolder = ({ subfolder, isChecked }) => {
     setIsSubfolderChecked(!isSubfolderChecked);
   };
 
+  const handleShowFile = () =>{
+    setActiveSub(subfolder);
+    setShowFile(!showFile);
+  }
   return (
     <div>
       {/* <input type="checkbox" checked={isSubfolderChecked} onChange={toggleCheckbox} /> */}
-      <h4>{subfolder.name}</h4>
-      {/* {subfolder.files.map((file, index) => (
-        <div key={index}>{file}</div>
-      ))} */}
+      <h4 style={{color:"red"}} onClick={handleShowFile}>{subfolder.name}</h4>
+      {showFile && subfolder.files.map((file, index) => (
+        <div key={index} style={{marginLeft:'30px',color:"purple"}}>{file}</div>
+      ))}
     </div>
   );
 };
