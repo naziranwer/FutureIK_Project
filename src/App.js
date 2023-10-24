@@ -135,7 +135,7 @@ const mainFolders = [
 
 const App = () => {
   return (
-    <div className='App '>
+    <div className='App' style={{margin:"20px"}}>
       {mainFolders.map((mainFolder, index) => (
         <MainFolder key={index} mainFolder={mainFolder} />
       ))}
