@@ -56,7 +56,8 @@
 // MainFolder.js
 import React, { useState, useEffect } from "react";
 import Subfolder from "./subFolder";
-import "../App.css";
+// import "../App.css";
+
 
 const MainFolder = ({ mainFolder }) => {
   const [isChecked, setIsChecked] = useState(false);
@@ -70,14 +71,15 @@ const MainFolder = ({ mainFolder }) => {
     const allSubfoldersChecked = subfolders.every(subfolder => subfolder.isChecked);
     setIsChecked(allSubfoldersChecked);
   }, [subfolders]);
-
+  
+  console.log("isChecked status",isChecked);
   const toggleCheckbox = () => {
     // Toggle the main folder checkbox
     setIsChecked(!isChecked);
     // Update the isChecked property for all subfolders
-    subfolders.forEach(subfolder => {
-      subfolder.isChecked = !isChecked;
-    });
+    // subfolders.forEach(subfolder => {
+    //   subfolder.isChecked = !isChecked;
+    // });
   };
 
   const handleSubfolderChange = () => {
@@ -92,7 +94,7 @@ const MainFolder = ({ mainFolder }) => {
   };
 
   return (
-    <div>
+    <div >
       <div style={{ display: "flex", alignItems: "center" }}>
         <input
           type="checkbox"
@@ -110,6 +112,7 @@ const MainFolder = ({ mainFolder }) => {
         subfolders.map((subfolder, index) => (
           <div key={index} style={{ display: "flex", alignItems: "center", marginLeft: "30px" }}>
             <input
+            className="bg-red-800"
               type="checkbox"
               checked={subfolder.isChecked}
               onChange={() => {

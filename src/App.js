@@ -1,6 +1,8 @@
 // App.js
+import "./App.css"
 import React from 'react';
 import MainFolder from './components/mainFolder';
+
 
 const mainFolders = [
   {
@@ -105,6 +107,7 @@ const mainFolders = [
   },
   {
     name: 'Main Folder 5',
+
     subfolders: [
       {
         name: 'Subfolder 5.1',
@@ -132,7 +135,7 @@ const mainFolders = [
 
 const App = () => {
   return (
-    <div className='App'>
+    <div className='App '>
       {mainFolders.map((mainFolder, index) => (
         <MainFolder key={index} mainFolder={mainFolder} />
       ))}
@@ -141,3 +144,4 @@ const App = () => {
 };
 
 export default App;
+
