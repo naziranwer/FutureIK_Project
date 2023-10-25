@@ -34,18 +34,42 @@ const useTraverseTree = () => {
     }
     return tree;
   }
+  
+
+  const updateParentSelection = function (tree) {
+    if (tree.isFolder) {
+      let allChildrenSelected = true;
+      for (const item of tree.items) {
+        if (item.isFolder) {
+          updateParentSelection(item); // Recursively update child folders
+        }
+        if (!item.isSelected) {
+          allChildrenSelected = false;
+          break;
+        }
+      }
+      tree.isSelected = allChildrenSelected;
+    }
+  };
+
 
   const selectNode = function (tree, folderId) {
 
     if(tree.id === folderId){
-      selectInnerFiles(tree,!tree.isSelected)
+     return selectInnerFiles(tree,!tree.isSelected)
     }
    
     tree.items.forEach((item) => {
       selectNode(item, folderId);
     });
+
+
+    updateParentSelection(tree);
        
     return tree;
+  
+
+
   };
 
   

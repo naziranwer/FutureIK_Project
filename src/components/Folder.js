@@ -26,7 +26,7 @@ function Folder({ handleInsertNode = () => { },handleSelectNode= () => { },explo
 
   const handleCheck = (e) => {
     e.stopPropagation();
-
+    setExpand(true);
     handleSelectNode(explorer.id);
   }
 
